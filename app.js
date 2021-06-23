@@ -112,7 +112,7 @@ app.post("/Login", (req,res)=>{
     var username = req.body.email;
     var Password = req.body.password;
 
-    db.collection('userDB').findOne({email: username},(err, foundUser)=>{
+    db.collection('adminDB').findOne({email: username},(err, foundUser)=>{
         if(err){
             console.log(err);
             res.redirect("Login.html")
@@ -220,7 +220,7 @@ app.post("/Designer", function (req, res){
                 console.log(err);} 
             else{
                 console.log("row inserted successfully");
-                res.redirect("/design.html")
+                res.redirect("/DesSuccess.html")
             } 
             });
             request.on("requestCompleted", function (rowCount, more) {
@@ -258,7 +258,7 @@ app.post("/Logisticsupd", function (req, res){
                 console.log(err);} 
             else{
                 console.log("row inserted successfully");
-                res.redirect("/logisticsupd.html")
+                res.redirect("/LogupdSuccess.html")
             } 
             });
             request.on("requestCompleted", function (rowCount, more) {
@@ -299,7 +299,7 @@ app.post("/Logistics", function (req, res){
                 console.log(err);} 
             else{
                 console.log("row inserted successfully");
-                res.redirect("/logistics.html")
+                res.redirect("/LogSuccess.html")
             } 
             });
             request.on("requestCompleted", function (rowCount, more) {
@@ -319,8 +319,12 @@ app.get("/",(req,res)=>{
     res.set({
         "Allow-access-Allow-Origin": '*'
     })
-    return res.redirect("/Signup.html");
+    return res.redirect("/home.html");
 }).listen(process.env.PORT || 3000);
+
+app.get("/Signup",(req, res)=>{
+    res.redirect("/Signup.html");
+});
 
 app.get("/Designup",(req, res)=>{
     res.redirect("/Designup.html");
